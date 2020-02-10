@@ -14,6 +14,7 @@
 !Makefile
 !README
 !dwm.desktop
+!dwm.install
 !01.Setup.makefiles.patch
 !02.Base.config.changes.patch
 !03.New.master.patch
