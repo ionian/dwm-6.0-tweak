@@ -8,10 +8,10 @@ Subject: [PATCH 7/7] adding changes to config.h to allow xft and statuscolors
  config.h | 33 +++++++++++++++++++++++----------
  1 file changed, 23 insertions(+), 10 deletions(-)
 
-diff --git a/config.h b/config.h
+diff --git a/config.def.h b/config.def.h
 index 77ff358..b17a86e 100644
---- a/config.h
-+++ b/config.h
+--- a/config.def.h
++++ b/config.def.h
 @@ -9,28 +9,34 @@ static const char selbordercolor[]  = "#005577";
  static const char selbgcolor[]      = "#005577";
  static const char selfgcolor[]      = "#eeeeee";
