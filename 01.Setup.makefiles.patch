@@ -1,17 +1,17 @@
-From d5191c73192a428dc39266e0122de8f8487ae36f Mon Sep 17 00:00:00 2001
+From 3b9334a905a48352a9f0034040da70b6df2dc164 Mon Sep 17 00:00:00 2001
 From: ionian <mike.github778@gmail.com>
-Date: Sat, 19 Jan 2019 12:33:55 -0800
-Subject: [PATCH 3/3] changes to config.mk that are in the dwm-6.1
+Date: Sun, 3 Feb 2019 15:07:20 -0800
+Subject: [PATCH] changes to config.mk for patch
 
 ---
- config.mk | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ config.mk | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/config.mk b/config.mk
-index 484554a..622e44b 100644
+index 2a067bd..caaf4eb 100644
 --- a/config.mk
 +++ b/config.mk
-@@ -4,22 +4,22 @@ VERSION = 6.0
+@@ -4,19 +4,19 @@ VERSION = 6.0
  # Customize below to fit your system
  
  # paths
@@ -35,11 +35,7 @@ index 484554a..622e44b 100644
 +LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} -lutil -lXext -lXft -lfontconfig
  
  # flags
--CPPFLAGS = -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
-+CPPFLAGS += -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
- #CFLAGS = -g -std=c99 -pedantic -Wall -O0 ${INCS} ${CPPFLAGS}
- CFLAGS = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
- #LDFLAGS = -g ${LIBS}
+ CPPFLAGS = -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
 -- 
 2.20.1
 
