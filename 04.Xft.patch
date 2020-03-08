@@ -1,14 +1,14 @@
-From 8d3c506662cfc2c6371ce8da1f8f00d2ef76381d Mon Sep 17 00:00:00 2001
+From 924f4956bc7b40f8d99b72deb0e2578e61673cf9 Mon Sep 17 00:00:00 2001
 From: ionian <mike.github778@gmail.com>
-Date: Sun, 20 Jan 2019 12:59:51 -0800
-Subject: [PATCH 11/11] changes to create the xft patch
+Date: Sun, 3 Feb 2019 03:48:33 -0800
+Subject: [PATCH] adding changes for Xft
 
 ---
- dwm.c | 100 ++++++++++++++++++++--------------------------------------
- 1 file changed, 34 insertions(+), 66 deletions(-)
+ dwm.c | 101 ++++++++++++++++++++--------------------------------------
+ 1 file changed, 35 insertions(+), 66 deletions(-)
 
 diff --git a/dwm.c b/dwm.c
-index ccd5793..de9e433 100644
+index 0638a07..b816304 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -36,6 +36,8 @@
@@ -26,8 +26,8 @@ index ccd5793..de9e433 100644
  	int x, y, w, h;
 -	unsigned long norm[ColLast];
 -	unsigned long sel[ColLast];
-+    XftColor norm[ColLast];
-+    XftColor sel[ColLast];
++	XftColor norm[ColLast];
++	XftColor sel[ColLast];
  	Drawable drawable;
  	GC gc;
  	struct {
@@ -36,7 +36,7 @@ index ccd5793..de9e433 100644
  		int height;
 -		XFontSet set;
 -		XFontStruct *xfont;
-+        XftFont *xfont;
++		XftFont *xfont;
  	} font;
  } DC; /* draw context */
  
@@ -75,7 +75,7 @@ index ccd5793..de9e433 100644
  	int x;
  	unsigned int i, occ = 0, urg = 0;
 -	unsigned long *col;
-+    XftColor *col;
++	XftColor *col;
  	Client *c;
  
  	for(c = m->clients; c; c = c->next) {
@@ -88,7 +88,7 @@ index ccd5793..de9e433 100644
  	int x;
  
 -	XSetForeground(dpy, dc.gc, col[invert ? ColBG : ColFG]);
-+    XSetForeground(dpy, dc.gc, col[invert ? ColBG : ColFG].pixel);
++	XSetForeground(dpy, dc.gc, col[invert ? ColBG : ColFG].pixel);
  	x = (dc.font.ascent + dc.font.descent + 2) / 4;
  	if(filled)
  		XFillRectangle(dpy, dc.drawable, dc.gc, dc.x+1, dc.y+1, x+1, x+1);
@@ -100,14 +100,14 @@ index ccd5793..de9e433 100644
 +drawtext(const char *text, XftColor col[ColLast], Bool invert) {
  	char buf[256];
  	int i, x, y, h, len, olen;
-+    XftDraw *d;
++	XftDraw *d;
  
 -	XSetForeground(dpy, dc.gc, col[invert ? ColFG : ColBG]);
-+    XSetForeground(dpy, dc.gc, col[invert ? ColFG : ColBG].pixel);
++	XSetForeground(dpy, dc.gc, col[invert ? ColFG : ColBG].pixel);
  	XFillRectangle(dpy, dc.drawable, dc.gc, dc.x, dc.y, dc.w, dc.h);
  	if(!text)
  		return;
-@@ -805,11 +803,10 @@ drawtext(const char *text, unsigned long col[ColLast], Bool invert) {
+@@ -805,11 +803,11 @@ drawtext(const char *text, unsigned long col[ColLast], Bool invert) {
  	memcpy(buf, text, len);
  	if(len < olen)
  		for(i = len; i && i > len - 3; buf[--i] = '.');
@@ -116,14 +116,15 @@ index ccd5793..de9e433 100644
 -		XmbDrawString(dpy, dc.drawable, dc.font.set, dc.gc, x, y, buf, len);
 -	else
 -		XDrawString(dpy, dc.drawable, dc.gc, x, y, buf, len);
-+    d = XftDrawCreate(dpy, dc.drawable, DefaultVisual(dpy, screen), DefaultColormap(dpy,screen));
++
++	d = XftDrawCreate(dpy, dc.drawable, DefaultVisual(dpy, screen), DefaultColormap(dpy,screen));
 +
 +	XftDrawStringUtf8(d, &col[invert ? ColBG : ColFG], dc.font.xfont, x, y, (XftChar8 *) buf, len);
 +	XftDrawDestroy(d);
  }
  
  void
-@@ -855,7 +852,7 @@ focus(Client *c) {
+@@ -855,7 +853,7 @@ focus(Client *c) {
  		detachstack(c);
  		attachstack(c);
  		grabbuttons(c, True);
@@ -132,7 +133,7 @@ index ccd5793..de9e433 100644
  		setfocus(c);
  	}
  	else
-@@ -926,14 +923,14 @@ getatomprop(Client *c, Atom prop) {
+@@ -926,14 +924,14 @@ getatomprop(Client *c, Atom prop) {
  	return atom;
  }
  
@@ -152,7 +153,7 @@ index ccd5793..de9e433 100644
  }
  
  Bool
-@@ -1034,35 +1031,12 @@ incnmaster(const Arg *arg) {
+@@ -1034,35 +1032,12 @@ incnmaster(const Arg *arg) {
  
  void
  initfont(const char *fontstr) {
@@ -193,7 +194,7 @@ index ccd5793..de9e433 100644
  	dc.font.height = dc.font.ascent + dc.font.descent;
  }
  
-@@ -1144,7 +1118,7 @@ manage(Window w, XWindowAttributes *wa) {
+@@ -1144,7 +1119,7 @@ manage(Window w, XWindowAttributes *wa) {
  
  	wc.border_width = c->bw;
  	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
@@ -202,7 +203,7 @@ index ccd5793..de9e433 100644
  	configure(c); /* propagates border_width, if size doesn't change */
  	updatewindowtype(c);
  	updatesizehints(c);
-@@ -1621,8 +1595,6 @@ setup(void) {
+@@ -1621,8 +1596,6 @@ setup(void) {
  	dc.drawable = XCreatePixmap(dpy, root, DisplayWidth(dpy, screen), bh, DefaultDepth(dpy, screen));
  	dc.gc = XCreateGC(dpy, root, 0, NULL);
  	XSetLineAttributes(dpy, dc.gc, 1, LineSolid, CapButt, JoinMiter);
@@ -211,7 +212,7 @@ index ccd5793..de9e433 100644
  	/* init bars */
  	updatebars();
  	updatestatus();
-@@ -1692,13 +1664,9 @@ tagmon(const Arg *arg) {
+@@ -1692,13 +1665,9 @@ tagmon(const Arg *arg) {
  
  int
  textnw(const char *text, unsigned int len) {
@@ -228,7 +229,7 @@ index ccd5793..de9e433 100644
  }
  
  void
-@@ -1785,7 +1753,7 @@ unfocus(Client *c, Bool setfocus) {
+@@ -1787,7 +1756,7 @@ unfocus(Client *c, Bool setfocus) {
  	if(!c)
  		return;
  	grabbuttons(c, False);
