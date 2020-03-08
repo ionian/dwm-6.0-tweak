@@ -6,20 +6,17 @@
 
 # But not these files/directories...
 #!.example_dir/*/*
-!.gitignore
-!PKGBUILD
-!config.h
-!config.def.h
-!LICENSE
-!Makefile
-!README
-!dwm.desktop
-!dwm.install
-!01.Setup.makefiles.patch
-!02.Base.config.changes.patch
-!03.New.master.patch
-!04.Xft.patch
-!05.Statuscolours-config.h.patch
-!07.Statuscolours-dwm.c.patch
-src/*/*
-pkg/*/*
+!./.gitignore
+!./PKGBUILD
+!./config.h
+!./config.def.h
+!./LICENSE
+!./Makefile
+!./README
+!./dwm.desktop
+!./01.Setup.makefiles.patch
+!./02.Base.config.changes.patch
+!./03.New.master.patch
+!./04.Xft.patch
+!./05.Statuscolours-config.h.patch
+!./07.Statuscolours-dwm.c.patch
