@@ -1,35 +1,36 @@
-From 8ef6312af0f743be070a61edb847591c7a14d758 Mon Sep 17 00:00:00 2001
+From de1c78eb98c383a1c54ce68075e309dab7bd01bc Mon Sep 17 00:00:00 2001
 From: ionian <mike.github778@gmail.com>
-Date: Sun, 20 Jan 2019 11:06:42 -0800
-Subject: [PATCH 9/9] modified dwm.c to create the new master patch
+Date: Sun, 3 Feb 2019 03:12:53 -0800
+Subject: [PATCH] creating new master patch
 
 ---
- dwm.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ dwm.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/dwm.c b/dwm.c
-index 1d78655..ccd5793 100644
+index 1d78655..0638a07 100644
 --- a/dwm.c
 +++ b/dwm.c
-@@ -1763,10 +1763,19 @@ toggletag(const Arg *arg) {
+@@ -1763,10 +1763,21 @@ toggletag(const Arg *arg) {
  void
  toggleview(const Arg *arg) {
  	unsigned int newtagset = selmon->tagset[selmon->seltags] ^ (arg->ui & TAGMASK);
-+    Client *c = NULL;
-+    unsigned int found = 0;
++	Client *c = NULL;
++	unsigned int found = 0;
++
  
--	if(newtagset) {
-+    if(newtagset) {
+ 	if(newtagset) {
  		selmon->tagset[selmon->seltags] = newtagset;
 -		focus(NULL);
-+    for(c = selmon->clients; c && !(found = c->tags & arg->ui); c = c->next);
-+    if(found && ISVISIBLE(c)) {
-+	    detach(c);
-+	    attach(c);
-+	    focus(c);
-+    }
-+    else
-+	    focus(NULL);
++
++		for(c = selmon->clients; c && !(found = c->tags & arg->ui); c = c->next);
++		if(found && ISVISIBLE(c)) {
++			detach(c);
++			attach(c);
++			focus(c);
++		}
++		else
++			focus(NULL);
  		arrange(selmon);
  	}
  }
