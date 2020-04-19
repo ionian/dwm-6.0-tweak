@@ -22,7 +22,6 @@ _patches=(01.Setup.makefiles.patch
 source=(${source[@]} ${_patches[@]})
 
 prepare() {
-#   cp $srcdir/$pkgname-$pkgver/config.def.h ../../config.h
    cd "$srcdir/$pkgname-$pkgver"
 
  for p in "${_patches[@]}"; do
@@ -30,20 +29,11 @@ prepare() {
     patch < ../$p || return 1
   done
 
-   cp $srcdir/$pkgname-$pkgver/config.def.h $srcdir/$pkgname-$pkgver/config.h
 }
 
 build() {
-  cd "$srcdir/$pkgname-$pkgver"
-
-
-#  for p in "${_patches[@]}"; do
-#    echo "=> $p"
-#    patch < ../$p || return 1
-#  done
-
-#  cp $srcdir/config.h config.h
-
+   cd "$srcdir/$pkgname-$pkgver"
+   cp "$srcdir/$pkgname-$pkgver/config.def.h config.h"
 
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/^CFLAGS = -g/#CFLAGS += -g/g' config.mk
@@ -62,7 +52,7 @@ package() {
 }
 md5sums=('8bb00d4142259beb11e13473b81c0857'
          '939f403a71b6e85261d09fc3412269ee'
-         '2453e037f46449774ec8afab49b4f1a2'
+         '7f3f580bace83adf93973b3fb6509736'
          '009a8b8f7c3b28414f9cd966678ce65c'
          'daa21d283d9480227d6be98217c17d6e'
          '7a6b8586127c7169ab2485cb89aeda42'
