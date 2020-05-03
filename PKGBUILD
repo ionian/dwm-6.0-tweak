@@ -33,7 +33,7 @@ prepare() {
 
 build() {
    cd "$srcdir/$pkgname-$pkgver"
-   cp "$srcdir/$pkgname-$pkgver/config.def.h config.h"
+   cp -r "$srcdir/$pkgname-$pkgver/config.def.h" "$HOME/builds-arch/dwm/dwm-6.0-tweak/config.h"
 
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/^CFLAGS = -g/#CFLAGS += -g/g' config.mk
