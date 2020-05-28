@@ -21,7 +21,7 @@ static const Rule rules[] = {
    { "Vimprobable", NULL,       NULL,       1 << 1,       False,       -1 },
    { "chromium",    NULL,       NULL,       1 << 2,       False,       -1 },
    { "tabbed",      NULL,       NULL,       1 << 1,       False,       -1 },
-   { "mpv",         NULL,       NULL,       1 << 0,       True,        -1 },
+   { "mpv",         NULL,       NULL,       1 << 2,       False,       -1 },
    {  NULL,         NULL,      "mutt",      1 << 3,       False,       -1 },
    {  NULL,         NULL,      "tmux",      1 << 2,       False,       -1 },
    {  NULL,         NULL,      "ssh",       1 << 0,       False,       -1 },
