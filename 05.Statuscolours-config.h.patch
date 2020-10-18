@@ -11,8 +11,8 @@ diff --git a/config.def.h b/config.def.h
 index cf7def2..63620eb 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -1,13 +1,20 @@
- /* See LICENSE file for copyright and license details. */
+ 
+/* See LICENSE file for copyright and license details. */
  
  /* appearance */
 -static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
@@ -39,7 +39,8 @@ index cf7def2..63620eb 100644
  static const unsigned int borderpx  = 1;        /* border pixel of windows */
  static const unsigned int snap      = 8;        /* snap pixel */
  static const Bool showbar           = True;     /* False means no bar */
-@@ -52,7 +59,7 @@ static const Layout layouts[] = {
+
+ static const Layout layouts[] = {
  #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
  
  /* commands */
