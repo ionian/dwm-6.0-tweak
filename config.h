@@ -9,33 +9,28 @@ static const char selbordercolor[]  = "#005577";
 static const char selbgcolor[]      = "#005577";
 static const char selfgcolor[]      = "#eeeeee";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 8;        /* snap pixel */
+static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "base", "web", "term", "mail", };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
-   /* class      instance    title       tags mask     isfloating   monitor */
-   { "Vimprobable", NULL,       NULL,       1 << 1,       False,       -1 },
-   { "chromium",    NULL,       NULL,       1 << 2,       False,       -1 },
-   { "tabbed",      NULL,       NULL,       1 << 1,       False,       -1 },
-   {  NULL,         NULL,      "mutt",      1 << 3,       False,       -1 },
-   {  NULL,         NULL,      "tmux",      1 << 2,       False,       -1 },
-   {  NULL,         NULL,      "ssh",       1 << 0,       False,       -1 },
-   {  NULL,         NULL,      "scratchpad",     0,       True,        -1 },
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },
 };
 
 /* layout(s) */
 static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 1;    /* number of clients in master area */
-static const Bool resizehints = False;/* True means respect size hints in tiled resizals */
+static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[T]",      tile },    /* first entry is default */
-	{ "[F]",      NULL },    /* no layout function means floating behavior */
+	{ "[]=",      tile },    /* first entry is default */
+	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
@@ -51,7 +46,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char  *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
 static const char   *termcmd[] = { "urxvtc", NULL };
 static const char  *xtermcmd[] = { "xterm",  NULL };
 static const char   *mailcmd[] = { "urxvtc", "-title", "mutt", "-e", "mutt", NULL };
