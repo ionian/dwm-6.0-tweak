@@ -1,36 +1,49 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
-static const char normbordercolor[] = "#444444";
-static const char normbgcolor[]     = "#222222";
-static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#005577";
-static const char selbgcolor[]      = "#005577";
-static const char selfgcolor[]      = "#eeeeee";
+static const char font[]            = "Dejavu Sans Mono:medium:size=10.5";
+#define NUMCOLORS 9
+static const char colors[NUMCOLORS][ColLast][9] = {
+// border foreground background
+{ "#212121", "#696969", "#121212" }, // 0 = normal
+{ "#696969", "#E0E0E0", "#121212" }, // 1 = selected
+{ "#212121", "#CF4F88", "#121212" }, // 2 = red
+{ "#212121", "#53A6A6", "#121212" }, // 3 = green
+{ "#212121", "#914E89", "#121212" }, // 4 = yellow
+{ "#212121", "#4779B3", "#121212" }, // 5 = blue
+{ "#212121", "#47959E", "#121212" }, // 6 = cyan
+{ "#212121", "#7E62B3", "#121212" }, // 7 = magenta
+{ "#212121", "#899CA1", "#121212" }, // 8 = grey
+};
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 8;        /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "base", "web", "term", "mail", };
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },
+   /* class      instance    title       tags mask     isfloating   monitor */
+   { "Vimprobable", NULL,       NULL,       1 << 1,       False,       -1 },
+   { "chromium",    NULL,       NULL,       1 << 2,       False,       -1 },
+   { "tabbed",      NULL,       NULL,       1 << 1,       False,       -1 },
+   { "mpv",         NULL,       NULL,       1 << 0,       True,        -1 },
+   {  NULL,         NULL,      "mutt",      1 << 3,       False,       -1 },
+   {  NULL,         NULL,      "tmux",      1 << 2,       False,       -1 },
+   {  NULL,         NULL,      "ssh",       1 << 0,       False,       -1 },
+   {  NULL,         NULL,      "scratchpad",     0,       True,        -1 },
 };
 
 /* layout(s) */
 static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 1;    /* number of clients in master area */
-static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
+static const Bool resizehints = False;/* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[T]",      tile },    /* first entry is default */
+	{ "[F]",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
