@@ -33,7 +33,8 @@ prepare() {
 
 build() {
    cd "$srcdir/$pkgname-$pkgver"
-   cp -r "$srcdir/$pkgname-$pkgver/config.def.h" "$HOME/builds-arch/dwm/dwm-6.0-tweak/config.h"
+#   cp -r "$srcdir/$pkgname-$pkgver/config.def.h" "$HOME/builds-arch/dwm/dwm-6.0-tweak/config.h"
+   cp -r "$srcdir/$pkgname-$pkgver/config.h" "$HOME/builds-arch/dwm/dwm-6.0-tweak/config.h"
 
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/^CFLAGS = -g/#CFLAGS += -g/g' config.mk
@@ -52,7 +53,7 @@ package() {
 }
 md5sums=('8bb00d4142259beb11e13473b81c0857'
          '939f403a71b6e85261d09fc3412269ee'
-         '29f478f4d46896239ba19a693e8b59a7'
+         'f6a23ee1793ff5c17d31739bfb58cb1e'
          '009a8b8f7c3b28414f9cd966678ce65c'
          'd78645b0e56bc6cb1c993a9c6c1e5ba6'
          '7a6b8586127c7169ab2485cb89aeda42'
