@@ -7,7 +7,6 @@
 # But not these files/directories...
 #!.example_dir/*/*
 !./.gitignore
-!makepatch/*
 !./PKGBUILD
 !./config.h
 !./config.def.h
@@ -20,4 +19,4 @@
 !./03.New.master.patch
 !./04.Xft.patch
 !./05.Statuscolours-config.h.patch
-!./07.Statuscolours-dwm.c.patch
+!./06.Statuscolours-dwm.c.patch
